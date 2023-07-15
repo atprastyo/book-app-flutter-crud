@@ -1,4 +1,4 @@
-import 'package:book_crud/features/book/presentation/screens/home_screen.dart';
+import 'package:book_crud/features/book/presentation/home/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class BookApp extends StatelessWidget {
