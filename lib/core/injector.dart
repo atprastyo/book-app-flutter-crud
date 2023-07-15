@@ -4,7 +4,8 @@ import 'package:book_crud/features/book/data/sources/local/books_local_source.da
 import 'package:book_crud/features/book/domain/repositories/books_repository.dart';
 import 'package:book_crud/features/book/domain/use_cases/add_book_use_case.dart';
 import 'package:book_crud/features/book/domain/use_cases/get_all_books_use_case.dart';
-import 'package:book_crud/features/book/presentation/add_book/bloc/add_book_bloc.dart';
+import 'package:book_crud/features/book/domain/use_cases/update_book_use_case.dart';
+import 'package:book_crud/features/book/presentation/book/bloc/book_bloc.dart';
 import 'package:book_crud/features/book/presentation/home/bloc/books_bloc.dart';
 import 'package:get_it/get_it.dart';
 
@@ -26,10 +27,18 @@ Future<void> initDependencies() async {
   injector.registerLazySingleton(
     () => AddBookUseCase(booksRepository: injector()),
   );
+  injector.registerLazySingleton(
+    () => UpdateBookUseCase(booksRepository: injector()),
+  );
 
   /// BloC ///
   injector.registerFactory(() => BooksBloc(getAllBooksUseCase: injector()));
-  injector.registerFactory(() => AddBookBloc(addBookUseCase: injector()));
+  injector.registerFactory(
+    () => BookBloc(
+      addBookUseCase: injector(),
+      updateBookUseCase: injector(),
+    ),
+  );
 
   await injector<BooksLocalSource>().initDb();
 }

@@ -21,6 +21,7 @@ Book _$BookFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Book {
   String get id => throw _privateConstructorUsedError;
+  String get code => throw _privateConstructorUsedError;
   String get isbn => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   int get price => throw _privateConstructorUsedError;
@@ -41,6 +42,7 @@ abstract class $BookCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
+      String code,
       String isbn,
       String title,
       int price,
@@ -64,6 +66,7 @@ class _$BookCopyWithImpl<$Res, $Val extends Book>
   @override
   $Res call({
     Object? id = null,
+    Object? code = null,
     Object? isbn = null,
     Object? title = null,
     Object? price = null,
@@ -76,6 +79,10 @@ class _$BookCopyWithImpl<$Res, $Val extends Book>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      code: null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
               as String,
       isbn: null == isbn
           ? _value.isbn
@@ -117,6 +124,7 @@ abstract class _$$_BookCopyWith<$Res> implements $BookCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
+      String code,
       String isbn,
       String title,
       int price,
@@ -136,6 +144,7 @@ class __$$_BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res, _$_Book>
   @override
   $Res call({
     Object? id = null,
+    Object? code = null,
     Object? isbn = null,
     Object? title = null,
     Object? price = null,
@@ -148,6 +157,10 @@ class __$$_BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res, _$_Book>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      code: null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
               as String,
       isbn: null == isbn
           ? _value.isbn
@@ -186,6 +199,7 @@ class __$$_BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res, _$_Book>
 class _$_Book implements _Book {
   _$_Book(
       {required this.id,
+      required this.code,
       required this.isbn,
       required this.title,
       required this.price,
@@ -198,6 +212,8 @@ class _$_Book implements _Book {
 
   @override
   final String id;
+  @override
+  final String code;
   @override
   final String isbn;
   @override
@@ -216,7 +232,7 @@ class _$_Book implements _Book {
 
   @override
   String toString() {
-    return 'Book(id: $id, isbn: $isbn, title: $title, price: $price, category: $category, description: $description, publishedAt: $publishedAt, hardCover: $hardCover)';
+    return 'Book(id: $id, code: $code, isbn: $isbn, title: $title, price: $price, category: $category, description: $description, publishedAt: $publishedAt, hardCover: $hardCover)';
   }
 
   @override
@@ -225,6 +241,7 @@ class _$_Book implements _Book {
         (other.runtimeType == runtimeType &&
             other is _$_Book &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.code, code) || other.code == code) &&
             (identical(other.isbn, isbn) || other.isbn == isbn) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.price, price) || other.price == price) &&
@@ -240,8 +257,8 @@ class _$_Book implements _Book {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, isbn, title, price, category,
-      description, publishedAt, hardCover);
+  int get hashCode => Object.hash(runtimeType, id, code, isbn, title, price,
+      category, description, publishedAt, hardCover);
 
   @JsonKey(ignore: true)
   @override
@@ -260,6 +277,7 @@ class _$_Book implements _Book {
 abstract class _Book implements Book {
   factory _Book(
       {required final String id,
+      required final String code,
       required final String isbn,
       required final String title,
       required final int price,
@@ -272,6 +290,8 @@ abstract class _Book implements Book {
 
   @override
   String get id;
+  @override
+  String get code;
   @override
   String get isbn;
   @override

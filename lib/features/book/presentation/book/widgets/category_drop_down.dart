@@ -39,24 +39,28 @@ class _CategoryDropDownState<T> extends State<CategoryDropDown<T>> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: DropdownButtonFormField<T>(
-        value: selectedItem,
-        onChanged: (T? currentItem) {
-          widget.onChanged(currentItem as T);
-          setState(() => selectedItem = currentItem);
-        },
-        hint: widget.hint ?? const Text('Select Item'),
-        items: widget.items
-            .map(
-              (item) => DropdownMenuItem<T>(
-                value: item,
-                child: Text(
-                  checkType(item),
-                  style: const TextStyle(fontSize: 15),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: DropdownButtonFormField<T>(
+          value: selectedItem,
+          onChanged: (T? currentItem) {
+            widget.onChanged(currentItem as T);
+            setState(() => selectedItem = currentItem);
+          },
+          decoration: const InputDecoration.collapsed(hintText: 'Select Item'),
+          hint: widget.hint ?? const Text('Select Item'),
+          items: widget.items
+              .map(
+                (item) => DropdownMenuItem<T>(
+                  value: item,
+                  child: Text(
+                    checkType(item),
+                    style: const TextStyle(fontSize: 15),
+                  ),
                 ),
-              ),
-            )
-            .toList(),
+              )
+              .toList(),
+        ),
       ),
     );
   }

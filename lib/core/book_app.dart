@@ -1,6 +1,7 @@
 import 'package:book_crud/core/injector.dart';
-import 'package:book_crud/features/book/presentation/add_book/bloc/add_book_bloc.dart';
-import 'package:book_crud/features/book/presentation/add_book/screens/add_book_screen.dart';
+import 'package:book_crud/core/routes.dart';
+import 'package:book_crud/features/book/presentation/book/bloc/book_bloc.dart';
+import 'package:book_crud/features/book/presentation/book/screens/book_form_screen.dart';
 import 'package:book_crud/features/book/presentation/home/bloc/books_bloc.dart';
 import 'package:book_crud/features/book/presentation/home/screens/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -19,13 +20,7 @@ class BookApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
           useMaterial3: true,
         ),
-        routes: {
-          '/': (_) => const HomeScreen(),
-          'add-book': (_) => BlocProvider<AddBookBloc>(
-                create: (_) => injector<AddBookBloc>(),
-                child: const AddBookScreen(),
-              ),
-        },
+        routes: Routes.routeList,
       ),
     );
   }

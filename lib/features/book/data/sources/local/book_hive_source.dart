@@ -2,6 +2,7 @@ import 'package:book_crud/core/error/exceptions.dart';
 import 'package:book_crud/features/book/data/models/book.dart';
 import 'package:book_crud/features/book/data/sources/local/book_hive.dart';
 import 'package:book_crud/features/book/data/sources/local/books_local_source.dart';
+import 'package:book_crud/features/book/presentation/home/bloc/books_bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
@@ -28,6 +29,7 @@ class BookHiveSource implements BooksLocalSource {
       final booksBox = Hive.box<BookHive>(_bookBoxKey);
       final convertedTask = BookHive(
         id: book.id,
+        code: book.code,
         isbn: book.isbn,
         title: book.title,
         price: book.price,
@@ -44,13 +46,14 @@ class BookHiveSource implements BooksLocalSource {
   }
 
   @override
-  Future<List<Book>> getAllBooks() async {
+  Future<List<Book>> getAllBooks(SearchParam? param) async {
     try {
       final booksBox = Hive.box<BookHive>(_bookBoxKey);
-      final result = booksBox.values
+      List<Book> result = booksBox.values
           .map<Book>(
             (e) => Book(
               id: e.id,
+              code: e.code,
               isbn: e.isbn,
               title: e.title,
               description: e.description,
@@ -61,6 +64,16 @@ class BookHiveSource implements BooksLocalSource {
             ),
           )
           .toList();
+
+      if (param != null && param.query.trim().isNotEmpty) {
+        result = result
+            .where(
+              (element) => element.title
+                  .toLowerCase()
+                  .contains(param.query.toLowerCase()),
+            )
+            .toList();
+      }
       return result;
     } catch (_) {
       throw NoDataException();
@@ -79,5 +92,34 @@ class BookHiveSource implements BooksLocalSource {
     final booksBox = Hive.box<BookHive>(_bookBoxKey);
     await booksBox.delete(id);
     return Future.value(unit);
+  }
+
+  @override
+  Future<Unit> updateBook(Book book) async {
+    try {
+      final booksBox = Hive.box<BookHive>(_bookBoxKey);
+
+      int index =
+          booksBox.values.toList().indexWhere((item) => item.id == book.id);
+
+      if (index > 0) {
+        final convertedBook = BookHive(
+          id: book.id,
+          code: book.code,
+          isbn: book.isbn,
+          title: book.title,
+          price: book.price,
+          category: book.category,
+          description: book.description,
+          hardCover: book.hardCover,
+          publishedAt: book.publishedAt,
+        );
+        booksBox.put(index, convertedBook);
+      }
+
+      return Future.value(unit);
+    } catch (_) {
+      throw ConnectionException();
+    }
   }
 }

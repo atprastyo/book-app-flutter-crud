@@ -6,6 +6,7 @@ part 'book.g.dart';
 class Book with _$Book {
   factory Book({
     required String id,
+    required String code,
     required String isbn,
     required String title,
     required int price,

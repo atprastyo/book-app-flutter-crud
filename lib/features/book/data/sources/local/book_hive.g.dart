@@ -18,35 +18,38 @@ class BookHiveAdapter extends TypeAdapter<BookHive> {
     };
     return BookHive(
       id: fields[0] as String,
-      isbn: fields[1] as String,
-      title: fields[2] as String,
-      price: fields[3] as int,
-      category: fields[4] as String,
-      description: fields[5] as String?,
-      publishedAt: fields[6] as DateTime?,
-      hardCover: fields[7] as bool,
+      code: fields[1] as String,
+      isbn: fields[2] as String,
+      title: fields[3] as String,
+      price: fields[4] as int,
+      category: fields[5] as String,
+      description: fields[6] as String?,
+      publishedAt: fields[7] as DateTime?,
+      hardCover: fields[8] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, BookHive obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.isbn)
+      ..write(obj.code)
       ..writeByte(2)
-      ..write(obj.title)
+      ..write(obj.isbn)
       ..writeByte(3)
-      ..write(obj.price)
+      ..write(obj.title)
       ..writeByte(4)
-      ..write(obj.category)
+      ..write(obj.price)
       ..writeByte(5)
-      ..write(obj.description)
+      ..write(obj.category)
       ..writeByte(6)
-      ..write(obj.publishedAt)
+      ..write(obj.description)
       ..writeByte(7)
+      ..write(obj.publishedAt)
+      ..writeByte(8)
       ..write(obj.hardCover);
   }
 

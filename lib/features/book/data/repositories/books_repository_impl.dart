@@ -3,6 +3,7 @@ import 'package:book_crud/core/error/failure.dart';
 import 'package:book_crud/features/book/data/models/book.dart';
 import 'package:book_crud/features/book/data/sources/local/books_local_source.dart';
 import 'package:book_crud/features/book/domain/repositories/books_repository.dart';
+import 'package:book_crud/features/book/presentation/home/bloc/books_bloc.dart';
 import 'package:dartz/dartz.dart';
 
 class BooksRepositoryImpl implements BooksRepository {
@@ -13,18 +14,7 @@ class BooksRepositoryImpl implements BooksRepository {
   @override
   Future<Either<Failure, Unit>> addBook(Book book) async {
     try {
-      final response = await booksLocalDataSource.addBook(
-        Book(
-          id: book.id,
-          isbn: book.isbn,
-          title: book.title,
-          price: book.price,
-          category: book.category,
-          description: book.description,
-          hardCover: book.hardCover,
-          publishedAt: book.publishedAt,
-        ),
-      );
+      final response = await booksLocalDataSource.addBook(book);
       return Right(response);
     } on ConnectionException {
       return Left(DatabaseFailure());
@@ -32,12 +22,22 @@ class BooksRepositoryImpl implements BooksRepository {
   }
 
   @override
-  Future<Either<Failure, List<Book>>> getAllBooks() async {
+  Future<Either<Failure, List<Book>>> getAllBooks(SearchParam? param) async {
     try {
-      final response = await booksLocalDataSource.getAllBooks();
+      final response = await booksLocalDataSource.getAllBooks(param);
       return Right(response);
     } on NoDataException {
       return Left(NoDataFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> updateBook(Book book) async {
+    try {
+      final response = await booksLocalDataSource.updateBook(book);
+      return Right(response);
+    } on ConnectionException {
+      return Left(DatabaseFailure());
     }
   }
 }

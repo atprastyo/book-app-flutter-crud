@@ -6,6 +6,7 @@ part 'book_hive.g.dart';
 class BookHive {
   BookHive({
     required this.id,
+    required this.code,
     required this.isbn,
     required this.title,
     required this.price,
@@ -18,17 +19,19 @@ class BookHive {
   @HiveField(0)
   final String id;
   @HiveField(1)
-  final String isbn;
+  final String code;
   @HiveField(2)
-  final String title;
+  final String isbn;
   @HiveField(3)
-  final int price;
+  final String title;
   @HiveField(4)
-  final String category;
+  final int price;
   @HiveField(5)
-  final String? description;
+  final String category;
   @HiveField(6)
-  final DateTime? publishedAt;
+  final String? description;
   @HiveField(7)
+  final DateTime? publishedAt;
+  @HiveField(8)
   final bool hardCover;
 }

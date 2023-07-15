@@ -16,19 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$BooksEvent {
+  SearchParam? get param => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getAllBooks,
+    required TResult Function(SearchParam? param) getAllBooks,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getAllBooks,
+    TResult? Function(SearchParam? param)? getAllBooks,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getAllBooks,
+    TResult Function(SearchParam? param)? getAllBooks,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -48,6 +49,10 @@ mixin _$BooksEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $BooksEventCopyWith<BooksEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -55,6 +60,8 @@ abstract class $BooksEventCopyWith<$Res> {
   factory $BooksEventCopyWith(
           BooksEvent value, $Res Function(BooksEvent) then) =
       _$BooksEventCopyWithImpl<$Res, BooksEvent>;
+  @useResult
+  $Res call({SearchParam? param});
 }
 
 /// @nodoc
@@ -66,13 +73,30 @@ class _$BooksEventCopyWithImpl<$Res, $Val extends BooksEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? param = freezed,
+  }) {
+    return _then(_value.copyWith(
+      param: freezed == param
+          ? _value.param
+          : param // ignore: cast_nullable_to_non_nullable
+              as SearchParam?,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$GetAllBooksEventCopyWith<$Res> {
+abstract class _$$GetAllBooksEventCopyWith<$Res>
+    implements $BooksEventCopyWith<$Res> {
   factory _$$GetAllBooksEventCopyWith(
           _$GetAllBooksEvent value, $Res Function(_$GetAllBooksEvent) then) =
       __$$GetAllBooksEventCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({SearchParam? param});
 }
 
 /// @nodoc
@@ -82,51 +106,75 @@ class __$$GetAllBooksEventCopyWithImpl<$Res>
   __$$GetAllBooksEventCopyWithImpl(
       _$GetAllBooksEvent _value, $Res Function(_$GetAllBooksEvent) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? param = freezed,
+  }) {
+    return _then(_$GetAllBooksEvent(
+      param: freezed == param
+          ? _value.param
+          : param // ignore: cast_nullable_to_non_nullable
+              as SearchParam?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$GetAllBooksEvent implements GetAllBooksEvent {
-  const _$GetAllBooksEvent();
+  const _$GetAllBooksEvent({this.param});
+
+  @override
+  final SearchParam? param;
 
   @override
   String toString() {
-    return 'BooksEvent.getAllBooks()';
+    return 'BooksEvent.getAllBooks(param: $param)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GetAllBooksEvent);
+        (other.runtimeType == runtimeType &&
+            other is _$GetAllBooksEvent &&
+            (identical(other.param, param) || other.param == param));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, param);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetAllBooksEventCopyWith<_$GetAllBooksEvent> get copyWith =>
+      __$$GetAllBooksEventCopyWithImpl<_$GetAllBooksEvent>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getAllBooks,
+    required TResult Function(SearchParam? param) getAllBooks,
   }) {
-    return getAllBooks();
+    return getAllBooks(param);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getAllBooks,
+    TResult? Function(SearchParam? param)? getAllBooks,
   }) {
-    return getAllBooks?.call();
+    return getAllBooks?.call(param);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getAllBooks,
+    TResult Function(SearchParam? param)? getAllBooks,
     required TResult orElse(),
   }) {
     if (getAllBooks != null) {
-      return getAllBooks();
+      return getAllBooks(param);
     }
     return orElse();
   }
@@ -161,7 +209,15 @@ class _$GetAllBooksEvent implements GetAllBooksEvent {
 }
 
 abstract class GetAllBooksEvent implements BooksEvent {
-  const factory GetAllBooksEvent() = _$GetAllBooksEvent;
+  const factory GetAllBooksEvent({final SearchParam? param}) =
+      _$GetAllBooksEvent;
+
+  @override
+  SearchParam? get param;
+  @override
+  @JsonKey(ignore: true)
+  _$$GetAllBooksEventCopyWith<_$GetAllBooksEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
