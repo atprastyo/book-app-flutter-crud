@@ -19,6 +19,7 @@ class BooksRepositoryImpl implements BooksRepository {
           isbn: book.isbn,
           title: book.title,
           price: book.price,
+          category: book.category,
           description: book.description,
           hardCover: book.hardCover,
           publishedAt: book.publishedAt,

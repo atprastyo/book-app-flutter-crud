@@ -9,6 +9,7 @@ class Book with _$Book {
     required String isbn,
     required String title,
     required int price,
+    required String category,
     String? description,
     DateTime? publishedAt,
     @Default(false)

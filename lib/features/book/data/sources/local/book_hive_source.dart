@@ -4,6 +4,7 @@ import 'package:book_crud/features/book/data/sources/local/book_hive.dart';
 import 'package:book_crud/features/book/data/sources/local/books_local_source.dart';
 import 'package:dartz/dartz.dart';
 import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 
 class BookHiveSource implements BooksLocalSource {
   final _bookBoxKey = 'books_box';
@@ -11,6 +12,8 @@ class BookHiveSource implements BooksLocalSource {
   @override
   Future<bool> initDb() async {
     try {
+      final appDocumentDir = await getApplicationDocumentsDirectory();
+      Hive.init(appDocumentDir.path);
       Hive.registerAdapter(BookHiveAdapter());
       await Hive.openBox<BookHive>(_bookBoxKey);
       return true;
@@ -28,6 +31,7 @@ class BookHiveSource implements BooksLocalSource {
         isbn: book.isbn,
         title: book.title,
         price: book.price,
+        category: book.category,
         description: book.description,
         hardCover: book.hardCover,
         publishedAt: book.publishedAt,
@@ -51,6 +55,7 @@ class BookHiveSource implements BooksLocalSource {
               title: e.title,
               description: e.description,
               price: e.price,
+              category: e.category,
               publishedAt: e.publishedAt,
               hardCover: e.hardCover,
             ),

@@ -10,12 +10,15 @@ class BookListContainer extends StatelessWidget {
     return ListView.builder(
       itemBuilder: (context, index) => Row(
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(books[index].title),
-              Text(books[index].isbn),
-            ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(books[index].title),
+                Text(books[index].isbn),
+              ],
+            ),
           ),
           IconButton(onPressed: () {}, icon: const Icon(Icons.edit_note)),
         ],

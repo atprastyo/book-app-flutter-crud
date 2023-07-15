@@ -19,9 +19,16 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
       if (event is GetAllBooksEvent) {
         emit(const BooksState.loading());
         final response = await getAllBooksUseCase(const DefaultParams());
-        response.fold((l) => emit(const BooksState.error()),
-            (r) => emit(BooksState.loaded(r)));
+        response.fold(
+          (l) => emit(const BooksState.error()),
+          (r) {
+            total = r.length;
+            return emit(BooksState.loaded(r));
+          },
+        );
       }
     });
   }
+
+  int total = 0;
 }

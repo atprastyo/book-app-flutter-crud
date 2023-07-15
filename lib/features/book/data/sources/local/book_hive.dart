@@ -9,6 +9,7 @@ class BookHive {
     required this.isbn,
     required this.title,
     required this.price,
+    required this.category,
     this.description,
     this.publishedAt,
     this.hardCover = false,
@@ -23,9 +24,11 @@ class BookHive {
   @HiveField(3)
   final int price;
   @HiveField(4)
-  final String? description;
+  final String category;
   @HiveField(5)
-  final DateTime? publishedAt;
+  final String? description;
   @HiveField(6)
+  final DateTime? publishedAt;
+  @HiveField(7)
   final bool hardCover;
 }
