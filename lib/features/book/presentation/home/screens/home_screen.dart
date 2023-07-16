@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        appBar: AppBar(title: const Text('Books')),
+        appBar: AppBar(title: const Text('Books'), centerTitle: true),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -29,22 +29,17 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                  onPressed: () async {
-                    final bloc = context.read<BooksBloc>();
-                    final Object? refresh = await Navigator.pushNamed<Object?>(
-                      context,
-                      Routes.bookFormScreen,
-                    );
-
-                    if (refresh == true) {
-                      bloc.add(const GetAllBooksEvent());
-                    }
+                  onPressed: () {
+                    Navigator.pushNamed(context, Routes.bookFormScreen);
                   },
                   child: const Text('Add Book'),
                 ),
                 const SizedBox(width: 16),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    final bloc = context.read<BooksBloc>();
+                    bloc.add(const DeleteAllBooksEvent());
+                  },
                   child: const Text('Delete All'),
                 ),
               ],

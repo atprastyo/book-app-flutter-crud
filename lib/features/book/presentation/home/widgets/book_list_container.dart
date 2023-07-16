@@ -11,6 +11,9 @@ class BookListContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if(books.isEmpty){
+      return const Center(child: Text('No data'));
+    }
     return ListView.builder(
       itemBuilder: (context, index) {
         final Book book = books[index];

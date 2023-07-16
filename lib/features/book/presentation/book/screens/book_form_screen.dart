@@ -2,6 +2,7 @@ import 'package:book_crud/features/book/data/models/book.dart';
 import 'package:book_crud/features/book/presentation/book/bloc/book_bloc.dart';
 import 'package:book_crud/features/book/presentation/book/widgets/category_drop_down.dart';
 import 'package:book_crud/features/book/presentation/book/widgets/date_picker.dart';
+import 'package:book_crud/features/book/presentation/home/bloc/books_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -66,6 +67,7 @@ class _BookFormScreenState extends State<BookFormScreen> {
                     ),
                   ),
                 );
+                context.read<BooksBloc>().add(const GetAllBooksEvent());
               },
               failed: () => ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text("Error Occurred")),
@@ -92,8 +94,9 @@ class _BookFormScreenState extends State<BookFormScreen> {
                           fontWeight: FontWeight.w500,
                         ),
                         controller: _codeController,
-                        validator: (val) =>
-                            val!.isEmpty ? 'Please enter book Code' : null,
+                        validator: (val) => val!.isEmpty || val.length < 6
+                            ? 'Please enter book Code with 6 character'
+                            : null,
                         decoration: InputDecoration(
                           contentPadding: const EdgeInsets.symmetric(
                             horizontal: 12,
@@ -383,12 +386,12 @@ class _BookFormScreenState extends State<BookFormScreen> {
                               id: widget.selected?.id ?? id,
                               code: _codeController.text,
                               isbn: _isbnController.text,
+                              title: _titleController.text,
                               price: price,
+                              description: _descriptionController.text,
                               category: _bookCategory ?? '',
                               hardCover: _hardCover,
-                              publishedAt: _publishedAt,
-                              title: _titleController.text,
-                              description: _descriptionController.text,
+                              publishedAt: _publishedAt ?? DateTime.now(),
                             );
 
                             if (widget.selected != null) {
