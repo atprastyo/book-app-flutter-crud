@@ -1,6 +1,6 @@
 import 'package:book_crud/core/error/exceptions.dart';
 import 'package:book_crud/features/book/data/models/book.dart';
-import 'package:book_crud/features/book/data/sources/local/book_hive.dart';
+import 'package:book_crud/features/book/domain/entities/book_hive.dart';
 import 'package:book_crud/features/book/data/sources/local/books_local_source.dart';
 import 'package:book_crud/features/book/presentation/home/bloc/books_bloc.dart';
 import 'package:dartz/dartz.dart';
