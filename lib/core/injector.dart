@@ -3,6 +3,8 @@ import 'package:book_crud/features/book/data/sources/local/book_hive_source.dart
 import 'package:book_crud/features/book/data/sources/local/books_local_source.dart';
 import 'package:book_crud/features/book/domain/repositories/books_repository.dart';
 import 'package:book_crud/features/book/domain/use_cases/add_book_use_case.dart';
+import 'package:book_crud/features/book/domain/use_cases/delete_all_book_use_case.dart';
+import 'package:book_crud/features/book/domain/use_cases/delete_book_use_case.dart';
 import 'package:book_crud/features/book/domain/use_cases/get_all_books_use_case.dart';
 import 'package:book_crud/features/book/domain/use_cases/update_book_use_case.dart';
 import 'package:book_crud/features/book/presentation/book/bloc/book_bloc.dart';
@@ -30,9 +32,21 @@ Future<void> initDependencies() async {
   injector.registerLazySingleton(
     () => UpdateBookUseCase(booksRepository: injector()),
   );
+  injector.registerLazySingleton(
+    () => DeleteBookUseCase(booksRepository: injector()),
+  );
+  injector.registerLazySingleton(
+    () => DeleteAllBookUseCase(booksRepository: injector()),
+  );
 
   /// BloC ///
-  injector.registerFactory(() => BooksBloc(getAllBooksUseCase: injector()));
+  injector.registerFactory(
+    () => BooksBloc(
+      getAllBooksUseCase: injector(),
+      deleteBookUseCase: injector(),
+      deleteAllBookUseCase: injector(),
+    ),
+  );
   injector.registerFactory(
     () => BookBloc(
       addBookUseCase: injector(),

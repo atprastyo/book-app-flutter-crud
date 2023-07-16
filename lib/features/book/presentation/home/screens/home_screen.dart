@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: const EdgeInsets.fromLTRB(16.0, 12, 16, 0),
                     child: TextField(
                       onChanged: _onChangeHandler,
-                      style: const TextStyle(fontSize: 10),
+                      style: const TextStyle(fontSize: 14),
                       decoration: InputDecoration(
                           isCollapsed: true,
                           contentPadding: const EdgeInsets.all(12),

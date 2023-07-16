@@ -8,5 +8,7 @@ abstract class BooksRepository {
 
   Future<Either<Failure, Unit>> addBook(Book book);
 
-  Future<Either<Failure, Unit>> updateBook(Book book);
+  Future<Either<Failure, bool>> updateBook(Book book);
+  Future<Either<Failure, List<Book>>> deleteBook(String bookId);
+  Future<Either<Failure, Unit>> deleteAllBook();
 }

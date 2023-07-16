@@ -1,9 +1,6 @@
 import 'package:book_crud/core/injector.dart';
 import 'package:book_crud/core/routes.dart';
-import 'package:book_crud/features/book/presentation/book/bloc/book_bloc.dart';
-import 'package:book_crud/features/book/presentation/book/screens/book_form_screen.dart';
 import 'package:book_crud/features/book/presentation/home/bloc/books_bloc.dart';
-import 'package:book_crud/features/book/presentation/home/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

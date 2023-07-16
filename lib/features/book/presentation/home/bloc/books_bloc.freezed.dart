@@ -16,42 +16,49 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$BooksEvent {
-  SearchParam? get param => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(SearchParam? param) getAllBooks,
+    required TResult Function() deleteAllBooks,
+    required TResult Function(String bookId) deleteBook,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(SearchParam? param)? getAllBooks,
+    TResult? Function()? deleteAllBooks,
+    TResult? Function(String bookId)? deleteBook,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(SearchParam? param)? getAllBooks,
+    TResult Function()? deleteAllBooks,
+    TResult Function(String bookId)? deleteBook,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetAllBooksEvent value) getAllBooks,
+    required TResult Function(DeleteAllBooksEvent value) deleteAllBooks,
+    required TResult Function(DeleteBooksEvent value) deleteBook,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GetAllBooksEvent value)? getAllBooks,
+    TResult? Function(DeleteAllBooksEvent value)? deleteAllBooks,
+    TResult? Function(DeleteBooksEvent value)? deleteBook,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetAllBooksEvent value)? getAllBooks,
+    TResult Function(DeleteAllBooksEvent value)? deleteAllBooks,
+    TResult Function(DeleteBooksEvent value)? deleteBook,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $BooksEventCopyWith<BooksEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -60,8 +67,6 @@ abstract class $BooksEventCopyWith<$Res> {
   factory $BooksEventCopyWith(
           BooksEvent value, $Res Function(BooksEvent) then) =
       _$BooksEventCopyWithImpl<$Res, BooksEvent>;
-  @useResult
-  $Res call({SearchParam? param});
 }
 
 /// @nodoc
@@ -73,28 +78,13 @@ class _$BooksEventCopyWithImpl<$Res, $Val extends BooksEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? param = freezed,
-  }) {
-    return _then(_value.copyWith(
-      param: freezed == param
-          ? _value.param
-          : param // ignore: cast_nullable_to_non_nullable
-              as SearchParam?,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$GetAllBooksEventCopyWith<$Res>
-    implements $BooksEventCopyWith<$Res> {
+abstract class _$$GetAllBooksEventCopyWith<$Res> {
   factory _$$GetAllBooksEventCopyWith(
           _$GetAllBooksEvent value, $Res Function(_$GetAllBooksEvent) then) =
       __$$GetAllBooksEventCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({SearchParam? param});
 }
@@ -155,6 +145,8 @@ class _$GetAllBooksEvent implements GetAllBooksEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(SearchParam? param) getAllBooks,
+    required TResult Function() deleteAllBooks,
+    required TResult Function(String bookId) deleteBook,
   }) {
     return getAllBooks(param);
   }
@@ -163,6 +155,8 @@ class _$GetAllBooksEvent implements GetAllBooksEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(SearchParam? param)? getAllBooks,
+    TResult? Function()? deleteAllBooks,
+    TResult? Function(String bookId)? deleteBook,
   }) {
     return getAllBooks?.call(param);
   }
@@ -171,6 +165,8 @@ class _$GetAllBooksEvent implements GetAllBooksEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(SearchParam? param)? getAllBooks,
+    TResult Function()? deleteAllBooks,
+    TResult Function(String bookId)? deleteBook,
     required TResult orElse(),
   }) {
     if (getAllBooks != null) {
@@ -183,6 +179,8 @@ class _$GetAllBooksEvent implements GetAllBooksEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetAllBooksEvent value) getAllBooks,
+    required TResult Function(DeleteAllBooksEvent value) deleteAllBooks,
+    required TResult Function(DeleteBooksEvent value) deleteBook,
   }) {
     return getAllBooks(this);
   }
@@ -191,6 +189,8 @@ class _$GetAllBooksEvent implements GetAllBooksEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GetAllBooksEvent value)? getAllBooks,
+    TResult? Function(DeleteAllBooksEvent value)? deleteAllBooks,
+    TResult? Function(DeleteBooksEvent value)? deleteBook,
   }) {
     return getAllBooks?.call(this);
   }
@@ -199,6 +199,8 @@ class _$GetAllBooksEvent implements GetAllBooksEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetAllBooksEvent value)? getAllBooks,
+    TResult Function(DeleteAllBooksEvent value)? deleteAllBooks,
+    TResult Function(DeleteBooksEvent value)? deleteBook,
     required TResult orElse(),
   }) {
     if (getAllBooks != null) {
@@ -212,11 +214,256 @@ abstract class GetAllBooksEvent implements BooksEvent {
   const factory GetAllBooksEvent({final SearchParam? param}) =
       _$GetAllBooksEvent;
 
-  @override
   SearchParam? get param;
-  @override
   @JsonKey(ignore: true)
   _$$GetAllBooksEventCopyWith<_$GetAllBooksEvent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeleteAllBooksEventCopyWith<$Res> {
+  factory _$$DeleteAllBooksEventCopyWith(_$DeleteAllBooksEvent value,
+          $Res Function(_$DeleteAllBooksEvent) then) =
+      __$$DeleteAllBooksEventCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$DeleteAllBooksEventCopyWithImpl<$Res>
+    extends _$BooksEventCopyWithImpl<$Res, _$DeleteAllBooksEvent>
+    implements _$$DeleteAllBooksEventCopyWith<$Res> {
+  __$$DeleteAllBooksEventCopyWithImpl(
+      _$DeleteAllBooksEvent _value, $Res Function(_$DeleteAllBooksEvent) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$DeleteAllBooksEvent implements DeleteAllBooksEvent {
+  const _$DeleteAllBooksEvent();
+
+  @override
+  String toString() {
+    return 'BooksEvent.deleteAllBooks()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$DeleteAllBooksEvent);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(SearchParam? param) getAllBooks,
+    required TResult Function() deleteAllBooks,
+    required TResult Function(String bookId) deleteBook,
+  }) {
+    return deleteAllBooks();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(SearchParam? param)? getAllBooks,
+    TResult? Function()? deleteAllBooks,
+    TResult? Function(String bookId)? deleteBook,
+  }) {
+    return deleteAllBooks?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(SearchParam? param)? getAllBooks,
+    TResult Function()? deleteAllBooks,
+    TResult Function(String bookId)? deleteBook,
+    required TResult orElse(),
+  }) {
+    if (deleteAllBooks != null) {
+      return deleteAllBooks();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetAllBooksEvent value) getAllBooks,
+    required TResult Function(DeleteAllBooksEvent value) deleteAllBooks,
+    required TResult Function(DeleteBooksEvent value) deleteBook,
+  }) {
+    return deleteAllBooks(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetAllBooksEvent value)? getAllBooks,
+    TResult? Function(DeleteAllBooksEvent value)? deleteAllBooks,
+    TResult? Function(DeleteBooksEvent value)? deleteBook,
+  }) {
+    return deleteAllBooks?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetAllBooksEvent value)? getAllBooks,
+    TResult Function(DeleteAllBooksEvent value)? deleteAllBooks,
+    TResult Function(DeleteBooksEvent value)? deleteBook,
+    required TResult orElse(),
+  }) {
+    if (deleteAllBooks != null) {
+      return deleteAllBooks(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DeleteAllBooksEvent implements BooksEvent {
+  const factory DeleteAllBooksEvent() = _$DeleteAllBooksEvent;
+}
+
+/// @nodoc
+abstract class _$$DeleteBooksEventCopyWith<$Res> {
+  factory _$$DeleteBooksEventCopyWith(
+          _$DeleteBooksEvent value, $Res Function(_$DeleteBooksEvent) then) =
+      __$$DeleteBooksEventCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String bookId});
+}
+
+/// @nodoc
+class __$$DeleteBooksEventCopyWithImpl<$Res>
+    extends _$BooksEventCopyWithImpl<$Res, _$DeleteBooksEvent>
+    implements _$$DeleteBooksEventCopyWith<$Res> {
+  __$$DeleteBooksEventCopyWithImpl(
+      _$DeleteBooksEvent _value, $Res Function(_$DeleteBooksEvent) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? bookId = null,
+  }) {
+    return _then(_$DeleteBooksEvent(
+      null == bookId
+          ? _value.bookId
+          : bookId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteBooksEvent implements DeleteBooksEvent {
+  const _$DeleteBooksEvent(this.bookId);
+
+  @override
+  final String bookId;
+
+  @override
+  String toString() {
+    return 'BooksEvent.deleteBook(bookId: $bookId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteBooksEvent &&
+            (identical(other.bookId, bookId) || other.bookId == bookId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, bookId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteBooksEventCopyWith<_$DeleteBooksEvent> get copyWith =>
+      __$$DeleteBooksEventCopyWithImpl<_$DeleteBooksEvent>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(SearchParam? param) getAllBooks,
+    required TResult Function() deleteAllBooks,
+    required TResult Function(String bookId) deleteBook,
+  }) {
+    return deleteBook(bookId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(SearchParam? param)? getAllBooks,
+    TResult? Function()? deleteAllBooks,
+    TResult? Function(String bookId)? deleteBook,
+  }) {
+    return deleteBook?.call(bookId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(SearchParam? param)? getAllBooks,
+    TResult Function()? deleteAllBooks,
+    TResult Function(String bookId)? deleteBook,
+    required TResult orElse(),
+  }) {
+    if (deleteBook != null) {
+      return deleteBook(bookId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetAllBooksEvent value) getAllBooks,
+    required TResult Function(DeleteAllBooksEvent value) deleteAllBooks,
+    required TResult Function(DeleteBooksEvent value) deleteBook,
+  }) {
+    return deleteBook(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetAllBooksEvent value)? getAllBooks,
+    TResult? Function(DeleteAllBooksEvent value)? deleteAllBooks,
+    TResult? Function(DeleteBooksEvent value)? deleteBook,
+  }) {
+    return deleteBook?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetAllBooksEvent value)? getAllBooks,
+    TResult Function(DeleteAllBooksEvent value)? deleteAllBooks,
+    TResult Function(DeleteBooksEvent value)? deleteBook,
+    required TResult orElse(),
+  }) {
+    if (deleteBook != null) {
+      return deleteBook(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DeleteBooksEvent implements BooksEvent {
+  const factory DeleteBooksEvent(final String bookId) = _$DeleteBooksEvent;
+
+  String get bookId;
+  @JsonKey(ignore: true)
+  _$$DeleteBooksEventCopyWith<_$DeleteBooksEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

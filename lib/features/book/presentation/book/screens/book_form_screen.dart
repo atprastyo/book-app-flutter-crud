@@ -59,9 +59,13 @@ class _BookFormScreenState extends State<BookFormScreen> {
               loading: () => null,
               success: () {
                 Navigator.pop(context, true);
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  content: Text("Added Successfully"),
-                ));
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      "${widget.selected != null ? "Updated" : "Added"} Successfully",
+                    ),
+                  ),
+                );
               },
               failed: () => ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text("Error Occurred")),
@@ -368,14 +372,15 @@ class _BookFormScreenState extends State<BookFormScreen> {
                         onPressed: () {
                           if (_formKey.currentState!.validate() &&
                               _bookCategory != null) {
-                            Uuid uuid = const Uuid();
+                            const Uuid uuid = Uuid();
 
                             String id = uuid.v4();
+
                             int price =
                                 int.tryParse(_priceController.text) ?? 0;
 
                             final Book book = Book(
-                              id: id,
+                              id: widget.selected?.id ?? id,
                               code: _codeController.text,
                               isbn: _isbnController.text,
                               price: price,

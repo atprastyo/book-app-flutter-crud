@@ -9,9 +9,9 @@ abstract class BooksLocalSource {
 
   Future<Unit> addBook(Book book);
 
-  Future<Unit> updateBook(Book book);
+  Future<bool> updateBook(Book book);
 
-  Future<Unit> deleteBook(String id);
+  Future<List<Book>> deleteBook(String id);
 
   Future<Unit> deleteAllBooks();
 }

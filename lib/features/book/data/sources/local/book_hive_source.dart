@@ -74,7 +74,8 @@ class BookHiveSource implements BooksLocalSource {
             )
             .toList();
       }
-      return result;
+
+      return Future.value(result);
     } catch (_) {
       throw NoDataException();
     }
@@ -88,21 +89,36 @@ class BookHiveSource implements BooksLocalSource {
   }
 
   @override
-  Future<Unit> deleteBook(String id) async {
+  Future<List<Book>> deleteBook(String id) async {
     final booksBox = Hive.box<BookHive>(_bookBoxKey);
+    int index = booksBox.values.toList().indexWhere((item) => item.id == id);
     await booksBox.delete(id);
-    return Future.value(unit);
+    List<Book> result = booksBox.values
+        .map<Book>(
+          (e) => Book(
+            id: e.id,
+            code: e.code,
+            isbn: e.isbn,
+            title: e.title,
+            description: e.description,
+            price: e.price,
+            category: e.category,
+            publishedAt: e.publishedAt,
+            hardCover: e.hardCover,
+          ),
+        )
+        .toList();
+    return Future.value(result);
   }
 
   @override
-  Future<Unit> updateBook(Book book) async {
+  Future<bool> updateBook(Book book) async {
     try {
       final booksBox = Hive.box<BookHive>(_bookBoxKey);
-
       int index =
           booksBox.values.toList().indexWhere((item) => item.id == book.id);
 
-      if (index > 0) {
+      if (index > -1) {
         final convertedBook = BookHive(
           id: book.id,
           code: book.code,
@@ -114,10 +130,13 @@ class BookHiveSource implements BooksLocalSource {
           hardCover: book.hardCover,
           publishedAt: book.publishedAt,
         );
+
         booksBox.put(index, convertedBook);
+      } else {
+        return Future.value(false);
       }
 
-      return Future.value(unit);
+      return Future.value(true);
     } catch (_) {
       throw ConnectionException();
     }

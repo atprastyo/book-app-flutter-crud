@@ -1,6 +1,8 @@
 import 'package:book_crud/core/routes.dart';
 import 'package:book_crud/features/book/data/models/book.dart';
+import 'package:book_crud/features/book/presentation/home/bloc/books_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 class BookListContainer extends StatelessWidget {
@@ -10,37 +12,48 @@ class BookListContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemBuilder: (context, index) => TextButton(
-        style: TextButton.styleFrom(
-          foregroundColor: Colors.black87,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        ),
-        onPressed: () => _showBookProfile(context, books[index]),
-        child: Row(
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(books[index].title),
-                  Text(books[index].isbn),
-                ],
+      itemBuilder: (context, index) {
+        final Book book = books[index];
+        return TextButton(
+          style: TextButton.styleFrom(
+            foregroundColor: Colors.black87,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+          onPressed: () => _showBookProfile(context, books[index]),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(book.title),
+                    Text(book.category),
+                  ],
+                ),
               ),
-            ),
-            IconButton(
-              onPressed: () {
-                Navigator.pushNamed(
-                  context,
-                  Routes.bookFormScreen,
-                  arguments: books[index],
-                );
-              },
-              icon: const Icon(Icons.edit_note),
-            ),
-          ],
-        ),
-      ),
+              IconButton(
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    Routes.bookFormScreen,
+                    arguments: book,
+                  );
+                },
+                icon: const Icon(Icons.edit_note),
+              ),
+              IconButton(
+                onPressed: () {
+                  context.read<BooksBloc>().add(DeleteBooksEvent(book.id));
+                },
+                icon: const Icon(Icons.delete),
+              ),
+            ],
+          ),
+        );
+      },
       itemCount: books.length,
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
     );
@@ -147,7 +160,8 @@ class BookListContainer extends StatelessWidget {
                     onPressed: () => Navigator.pop(context),
                     style: TextButton.styleFrom(
                       backgroundColor: Colors.white,
-                      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
+                      shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8))),
                     ),
                     child: const Padding(
                       padding: EdgeInsets.symmetric(

@@ -32,9 +32,29 @@ class BooksRepositoryImpl implements BooksRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> updateBook(Book book) async {
+  Future<Either<Failure, bool>> updateBook(Book book) async {
     try {
       final response = await booksLocalDataSource.updateBook(book);
+      return Right(response);
+    } on ConnectionException {
+      return Left(DatabaseFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Book>>> deleteBook(String id) async {
+    try {
+      final response = await booksLocalDataSource.deleteBook(id);
+      return Right(response);
+    } on ConnectionException {
+      return Left(DatabaseFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> deleteAllBook() async {
+    try {
+      final response = await booksLocalDataSource.deleteAllBooks();
       return Right(response);
     } on ConnectionException {
       return Left(DatabaseFailure());
