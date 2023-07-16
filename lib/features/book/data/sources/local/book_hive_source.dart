@@ -91,7 +91,6 @@ class BookHiveSource implements BooksLocalSource {
   @override
   Future<List<Book>> deleteBook(String id) async {
     final booksBox = Hive.box<BookHive>(_bookBoxKey);
-    int index = booksBox.values.toList().indexWhere((item) => item.id == id);
     await booksBox.delete(id);
     List<Book> result = booksBox.values
         .map<Book>(
