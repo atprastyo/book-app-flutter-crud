@@ -59,7 +59,7 @@ class _BookFormScreenState extends State<BookFormScreen> {
               initial: () => null,
               loading: () => null,
               success: () {
-                Navigator.pop(context, true);
+                Navigator.pop(context);
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(
@@ -165,8 +165,9 @@ class _BookFormScreenState extends State<BookFormScreen> {
                               color: Colors.grey.withOpacity(0.7),
                               width: 1,
                             ),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(8)),
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(8),
+                            ),
                           ),
                           fillColor: Colors.grey.withOpacity(0.1),
                         ),
@@ -392,6 +393,8 @@ class _BookFormScreenState extends State<BookFormScreen> {
                               category: _bookCategory ?? '',
                               hardCover: _hardCover,
                               publishedAt: _publishedAt ?? DateTime.now(),
+                              createdAt: widget.selected?.createdAt ??
+                                  DateTime.now().millisecondsSinceEpoch,
                             );
 
                             if (widget.selected != null) {
@@ -412,7 +415,7 @@ class _BookFormScreenState extends State<BookFormScreen> {
                         child: const Padding(
                           padding: EdgeInsets.all(4.0),
                           child: Text(
-                            "Simpan",
+                            "Save",
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,

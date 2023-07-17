@@ -1,9 +1,10 @@
+import 'package:book_crud/features/book/domain/entities/book_hive.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'book.freezed.dart';
 part 'book.g.dart';
 
 @freezed
-class Book with _$Book {
+class Book extends BookHive with _$Book {
   factory Book({
     required String id,
     required String code,
@@ -11,6 +12,7 @@ class Book with _$Book {
     required String title,
     required int price,
     required String category,
+    required int createdAt,
     String? description,
     DateTime? publishedAt,
     @Default(false)

@@ -44,54 +44,59 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-            BlocBuilder<BooksBloc, BooksState>(builder: (context, state) {
-              Widget contain = const SizedBox.shrink();
-              state.when(
-                initial: () => contain,
-                loading: () => contain,
-                loaded: (book) {
-                  contain = Padding(
-                    padding: const EdgeInsets.fromLTRB(16.0, 12, 16, 0),
-                    child: TextField(
-                      onChanged: _onChangeHandler,
-                      style: const TextStyle(fontSize: 14),
-                      decoration: InputDecoration(
-                          isCollapsed: true,
-                          contentPadding: const EdgeInsets.all(12),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.grey.withOpacity(.7),
-                              width: 1,
+            BlocBuilder<BooksBloc, BooksState>(
+              builder: (context, state) {
+                Widget contain = const SizedBox.shrink();
+                state.when(
+                  initial: () {},
+                  loading: () {},
+                  loaded: (books) {
+                    if (books.isNotEmpty) {
+                      contain = Padding(
+                        padding: const EdgeInsets.fromLTRB(16.0, 12, 16, 0),
+                        child: TextField(
+                          onChanged: _onChangeHandler,
+                          style: const TextStyle(fontSize: 14),
+                          decoration: InputDecoration(
+                            isCollapsed: true,
+                            contentPadding: const EdgeInsets.all(12),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.grey.withOpacity(.7),
+                                width: 1,
+                              ),
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(8),
+                              ),
                             ),
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(8),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.grey.withOpacity(0.7),
+                                width: .8,
+                              ),
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(8),
+                              ),
                             ),
+                            labelText: 'Search',
+                            labelStyle: const TextStyle(
+                              color: Colors.black38,
+                              fontSize: 14,
+                              height: 1,
+                            ),
+                            counterText: '',
+                            filled: true,
+                            fillColor: Colors.grey.withOpacity(.1),
                           ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.grey.withOpacity(0.7),
-                              width: .8,
-                            ),
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(8),
-                            ),
-                          ),
-                          labelText: 'Search',
-                          labelStyle: const TextStyle(
-                            color: Colors.black38,
-                            fontSize: 14,
-                            height: 1,
-                          ),
-                          counterText: '',
-                          filled: true,
-                          fillColor: Colors.grey.withOpacity(.1)),
-                    ),
-                  );
-                },
-                error: () => contain,
-              );
-              return contain;
-            }),
+                        ),
+                      );
+                    }
+                  },
+                  error: () {},
+                );
+                return contain;
+              },
+            ),
             Expanded(
               child: BlocBuilder<BooksBloc, BooksState>(
                 builder: (context, state) {

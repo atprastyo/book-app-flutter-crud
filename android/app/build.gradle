@@ -32,7 +32,7 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    namespace "com.atprastyo.books"
+    namespace "com.example.book_crud"
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 

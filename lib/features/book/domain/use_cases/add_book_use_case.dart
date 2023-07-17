@@ -4,13 +4,13 @@ import 'package:book_crud/features/book/data/models/book.dart';
 import 'package:book_crud/features/book/domain/repositories/books_repository.dart';
 import 'package:dartz/dartz.dart';
 
-class AddBookUseCase extends BaseUseCase<Unit, Book> {
+class AddBookUseCase extends BaseUseCase<bool, Book> {
   AddBookUseCase({required this.booksRepository});
 
   final BooksRepository booksRepository;
 
   @override
-  Future<Either<Failure, Unit>> call(Book param) async {
+  Future<Either<Failure, bool>> call(Book param) async {
     return await booksRepository.addBook(param);
   }
 }

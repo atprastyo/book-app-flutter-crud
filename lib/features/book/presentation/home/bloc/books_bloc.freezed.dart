@@ -473,7 +473,7 @@ mixin _$BooksState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Book> book) loaded,
+    required TResult Function(List<Book> books) loaded,
     required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
@@ -481,7 +481,7 @@ mixin _$BooksState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Book> book)? loaded,
+    TResult? Function(List<Book> books)? loaded,
     TResult? Function()? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -489,7 +489,7 @@ mixin _$BooksState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Book> book)? loaded,
+    TResult Function(List<Book> books)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) =>
@@ -578,7 +578,7 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Book> book) loaded,
+    required TResult Function(List<Book> books) loaded,
     required TResult Function() error,
   }) {
     return initial();
@@ -589,7 +589,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Book> book)? loaded,
+    TResult? Function(List<Book> books)? loaded,
     TResult? Function()? error,
   }) {
     return initial?.call();
@@ -600,7 +600,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Book> book)? loaded,
+    TResult Function(List<Book> books)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -691,7 +691,7 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Book> book) loaded,
+    required TResult Function(List<Book> books) loaded,
     required TResult Function() error,
   }) {
     return loading();
@@ -702,7 +702,7 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Book> book)? loaded,
+    TResult? Function(List<Book> books)? loaded,
     TResult? Function()? error,
   }) {
     return loading?.call();
@@ -713,7 +713,7 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Book> book)? loaded,
+    TResult Function(List<Book> books)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -770,7 +770,7 @@ abstract class _$$_LoadedCopyWith<$Res> {
   factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
       __$$_LoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Book> book});
+  $Res call({List<Book> books});
 }
 
 /// @nodoc
@@ -783,12 +783,12 @@ class __$$_LoadedCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? book = null,
+    Object? books = null,
   }) {
     return _then(_$_Loaded(
-      null == book
-          ? _value._book
-          : book // ignore: cast_nullable_to_non_nullable
+      null == books
+          ? _value._books
+          : books // ignore: cast_nullable_to_non_nullable
               as List<Book>,
     ));
   }
@@ -797,19 +797,19 @@ class __$$_LoadedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Loaded implements _Loaded {
-  const _$_Loaded(final List<Book> book) : _book = book;
+  const _$_Loaded(final List<Book> books) : _books = books;
 
-  final List<Book> _book;
+  final List<Book> _books;
   @override
-  List<Book> get book {
-    if (_book is EqualUnmodifiableListView) return _book;
+  List<Book> get books {
+    if (_books is EqualUnmodifiableListView) return _books;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_book);
+    return EqualUnmodifiableListView(_books);
   }
 
   @override
   String toString() {
-    return 'BooksState.loaded(book: $book)';
+    return 'BooksState.loaded(books: $books)';
   }
 
   @override
@@ -817,12 +817,12 @@ class _$_Loaded implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Loaded &&
-            const DeepCollectionEquality().equals(other._book, _book));
+            const DeepCollectionEquality().equals(other._books, _books));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_book));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_books));
 
   @JsonKey(ignore: true)
   @override
@@ -835,10 +835,10 @@ class _$_Loaded implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Book> book) loaded,
+    required TResult Function(List<Book> books) loaded,
     required TResult Function() error,
   }) {
-    return loaded(book);
+    return loaded(books);
   }
 
   @override
@@ -846,10 +846,10 @@ class _$_Loaded implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Book> book)? loaded,
+    TResult? Function(List<Book> books)? loaded,
     TResult? Function()? error,
   }) {
-    return loaded?.call(book);
+    return loaded?.call(books);
   }
 
   @override
@@ -857,12 +857,12 @@ class _$_Loaded implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Book> book)? loaded,
+    TResult Function(List<Book> books)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(book);
+      return loaded(books);
     }
     return orElse();
   }
@@ -906,9 +906,9 @@ class _$_Loaded implements _Loaded {
 }
 
 abstract class _Loaded implements BooksState {
-  const factory _Loaded(final List<Book> book) = _$_Loaded;
+  const factory _Loaded(final List<Book> books) = _$_Loaded;
 
-  List<Book> get book;
+  List<Book> get books;
   @JsonKey(ignore: true)
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       throw _privateConstructorUsedError;
@@ -952,7 +952,7 @@ class _$_Failed implements _Failed {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Book> book) loaded,
+    required TResult Function(List<Book> books) loaded,
     required TResult Function() error,
   }) {
     return error();
@@ -963,7 +963,7 @@ class _$_Failed implements _Failed {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Book> book)? loaded,
+    TResult? Function(List<Book> books)? loaded,
     TResult? Function()? error,
   }) {
     return error?.call();
@@ -974,7 +974,7 @@ class _$_Failed implements _Failed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Book> book)? loaded,
+    TResult Function(List<Book> books)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {

@@ -6,9 +6,11 @@ import 'package:dartz/dartz.dart';
 abstract class BooksRepository {
   Future<Either<Failure, List<Book>>> getAllBooks(SearchParam? param);
 
-  Future<Either<Failure, Unit>> addBook(Book book);
+  Future<Either<Failure, bool>> addBook(Book book);
 
   Future<Either<Failure, bool>> updateBook(Book book);
+
   Future<Either<Failure, List<Book>>> deleteBook(String bookId);
-  Future<Either<Failure, Unit>> deleteAllBook();
+
+  Future<Either<Failure, bool>> deleteAllBook();
 }

@@ -14,6 +14,7 @@ class BookHive {
     this.description,
     this.publishedAt,
     this.hardCover = false,
+    required this.createdAt,
   });
 
   @HiveField(0)
@@ -34,4 +35,6 @@ class BookHive {
   final DateTime? publishedAt;
   @HiveField(8)
   final bool hardCover;
+  @HiveField(9, defaultValue: 1)
+  final int createdAt;
 }

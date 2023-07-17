@@ -13,6 +13,7 @@ _$_Book _$$_BookFromJson(Map<String, dynamic> json) => _$_Book(
       title: json['title'] as String,
       price: json['price'] as int,
       category: json['category'] as String,
+      createdAt: json['createdAt'] as int,
       description: json['description'] as String?,
       publishedAt: json['publishedAt'] == null
           ? null
@@ -27,6 +28,7 @@ Map<String, dynamic> _$$_BookToJson(_$_Book instance) => <String, dynamic>{
       'title': instance.title,
       'price': instance.price,
       'category': instance.category,
+      'createdAt': instance.createdAt,
       'description': instance.description,
       'publishedAt': instance.publishedAt?.toIso8601String(),
       'hardCover': instance.hardCover,

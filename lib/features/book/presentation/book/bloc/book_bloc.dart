@@ -14,25 +14,29 @@ class BookBloc extends Bloc<BookEvent, BookState> {
   final AddBookUseCase addBookUseCase;
   final UpdateBookUseCase updateBookUseCase;
 
-  BookBloc({required this.addBookUseCase, required this.updateBookUseCase})
-      : super(const BookState.initial()) {
-    on<BookEvent>((event, emit) async {
-      if (event is AddNewBookEvent) {
-        emit(const BookState.loading());
-        final result = await addBookUseCase(event.book);
-        result.fold(
-          (l) => emit(const BookState.failed()),
-          (r) => emit(const BookState.success()),
-        );
-      }
-      if(event is UpdateBookEvent){
-        emit(const BookState.loading());
-        final result = await updateBookUseCase(event.book);
-        result.fold(
-              (l) => emit(const BookState.failed()),
-              (r) => emit(const BookState.success()),
-        );
-      }
-    });
+  BookBloc({
+    required this.addBookUseCase,
+    required this.updateBookUseCase,
+  }) : super(const BookState.initial()) {
+    on<BookEvent>(
+      (event, emit) async {
+        if (event is AddNewBookEvent) {
+          emit(const BookState.loading());
+          final result = await addBookUseCase(event.book);
+          result.fold(
+            (l) => emit(const BookState.failed()),
+            (r) => emit(const BookState.success()),
+          );
+        }
+        if (event is UpdateBookEvent) {
+          emit(const BookState.loading());
+          final result = await updateBookUseCase(event.book);
+          result.fold(
+            (l) => emit(const BookState.failed()),
+            (r) => emit(const BookState.success()),
+          );
+        }
+      },
+    );
   }
 }

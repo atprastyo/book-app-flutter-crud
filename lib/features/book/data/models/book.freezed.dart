@@ -26,6 +26,7 @@ mixin _$Book {
   String get title => throw _privateConstructorUsedError;
   int get price => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
+  int get createdAt => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   DateTime? get publishedAt => throw _privateConstructorUsedError;
   bool get hardCover => throw _privateConstructorUsedError;
@@ -47,6 +48,7 @@ abstract class $BookCopyWith<$Res> {
       String title,
       int price,
       String category,
+      int createdAt,
       String? description,
       DateTime? publishedAt,
       bool hardCover});
@@ -71,6 +73,7 @@ class _$BookCopyWithImpl<$Res, $Val extends Book>
     Object? title = null,
     Object? price = null,
     Object? category = null,
+    Object? createdAt = null,
     Object? description = freezed,
     Object? publishedAt = freezed,
     Object? hardCover = null,
@@ -100,6 +103,10 @@ class _$BookCopyWithImpl<$Res, $Val extends Book>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as int,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -129,6 +136,7 @@ abstract class _$$_BookCopyWith<$Res> implements $BookCopyWith<$Res> {
       String title,
       int price,
       String category,
+      int createdAt,
       String? description,
       DateTime? publishedAt,
       bool hardCover});
@@ -149,6 +157,7 @@ class __$$_BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res, _$_Book>
     Object? title = null,
     Object? price = null,
     Object? category = null,
+    Object? createdAt = null,
     Object? description = freezed,
     Object? publishedAt = freezed,
     Object? hardCover = null,
@@ -178,6 +187,10 @@ class __$$_BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res, _$_Book>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as int,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -204,6 +217,7 @@ class _$_Book implements _Book {
       required this.title,
       required this.price,
       required this.category,
+      required this.createdAt,
       this.description,
       this.publishedAt,
       this.hardCover = false});
@@ -223,6 +237,8 @@ class _$_Book implements _Book {
   @override
   final String category;
   @override
+  final int createdAt;
+  @override
   final String? description;
   @override
   final DateTime? publishedAt;
@@ -232,7 +248,7 @@ class _$_Book implements _Book {
 
   @override
   String toString() {
-    return 'Book(id: $id, code: $code, isbn: $isbn, title: $title, price: $price, category: $category, description: $description, publishedAt: $publishedAt, hardCover: $hardCover)';
+    return 'Book(id: $id, code: $code, isbn: $isbn, title: $title, price: $price, category: $category, createdAt: $createdAt, description: $description, publishedAt: $publishedAt, hardCover: $hardCover)';
   }
 
   @override
@@ -247,6 +263,8 @@ class _$_Book implements _Book {
             (identical(other.price, price) || other.price == price) &&
             (identical(other.category, category) ||
                 other.category == category) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.publishedAt, publishedAt) ||
@@ -258,7 +276,7 @@ class _$_Book implements _Book {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, code, isbn, title, price,
-      category, description, publishedAt, hardCover);
+      category, createdAt, description, publishedAt, hardCover);
 
   @JsonKey(ignore: true)
   @override
@@ -282,6 +300,7 @@ abstract class _Book implements Book {
       required final String title,
       required final int price,
       required final String category,
+      required final int createdAt,
       final String? description,
       final DateTime? publishedAt,
       final bool hardCover}) = _$_Book;
@@ -300,6 +319,8 @@ abstract class _Book implements Book {
   int get price;
   @override
   String get category;
+  @override
+  int get createdAt;
   @override
   String? get description;
   @override

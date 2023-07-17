@@ -7,9 +7,7 @@ import 'package:book_crud/features/book/domain/use_cases/get_all_books_use_case.
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'books_bloc.freezed.dart';
-
 part 'books_event.dart';
-
 part 'books_state.dart';
 
 class BooksBloc extends Bloc<BooksEvent, BooksState> {
@@ -28,10 +26,7 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
         final response = await getAllBooksUseCase(event.param);
         response.fold(
           (l) => emit(const BooksState.error()),
-          (r) {
-            total = r.length;
-            return emit(BooksState.loaded(r));
-          },
+          (r) => emit(BooksState.loaded(r)),
         );
       }
       if (event is DeleteBooksEvent) {
@@ -52,6 +47,4 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
       }
     });
   }
-
-  int total = 0;
 }
