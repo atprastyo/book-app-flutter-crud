@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:book_crud/features/book/data/repositories/books_repository_impl.dart';
 import 'package:book_crud/features/book/data/sources/local/data_source.dart';
+import 'package:book_crud/features/book/data/sources/local/data_source_interface.dart';
 import 'package:book_crud/features/book/domain/entities/book_hive.dart';
 import 'package:book_crud/features/book/domain/repositories/books_repository.dart';
 import 'package:book_crud/features/book/domain/use_cases/add_book_use_case.dart';
@@ -31,7 +32,7 @@ Future<void> initDependencies() async {
   final Box<BookHive> booksBox =
       await injector<HiveInterface>().openBox(DataSource.bookBoxKey);
 
-  injector.registerLazySingleton<DataSource>(
+  injector.registerLazySingleton<DataSourceInterface>(
     () => DataSource(hive: injector(), booksBox: booksBox),
   );
 
